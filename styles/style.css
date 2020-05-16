@@ -21,3 +21,8 @@ ol li {
     padding-left: 10px;
     margin-bottom: 10px;
 }
+
+h2.countdown {
+    margin-top: 30px;
+    font-size: 40px;
+}
