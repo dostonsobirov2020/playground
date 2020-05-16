@@ -37,3 +37,13 @@ const randomCallout = setTimeout(function callFunc() {
         setTimeout(callFunc, 1000);
     }
 }, randomNum * 500);
+
+
+function displayTime() {
+    let date = new Date();
+    let time = date.toLocaleTimeString();
+    document.querySelector('.clock').textContent = time;
+}
+
+displayTime();
+const createClock = setInterval(displayTime, 1000);
