@@ -46,4 +46,50 @@ function displayTime() {
 }
 
 displayTime();
+
 const createClock = setInterval(displayTime, 1000);
+
+let offset = 0;
+
+const rectangleContainer = document.getElementById('rectangle--container');
+const rectangleInner = document.getElementById('rectangle--inner');
+
+const rectangleMove = setTimeout(function move() {
+    
+    if (offset < 320) {
+        rectangleInner.style.left = offset + 'px';
+        offset++;
+        setTimeout(move, 5);
+    } else {
+        clearTimeout(rectangleMove);
+        offset = 0;
+        const rectangleMoveAgain = setInterval(function moveBottom() {
+            if (offset < 320) {
+                rectangleInner.style.top = offset + 'px';
+                offset++;
+            } else {
+                clearInterval(rectangleMoveAgain);
+                const rectangleMoveOnceAgain = setTimeout(function moveAgain() {
+                    if (offset > 0) {
+                        rectangleInner.style.left = offset + 'px';
+                        offset--;
+                        setTimeout(moveAgain, 5);
+                    } else {
+                        clearTimeout(rectangleMoveOnceAgain);
+                        offset = 320;
+                        const rectangleFinalMove = setInterval(() => {
+                            if (offset > 0) {
+                                rectangleInner.style.top = offset + 'px';
+                                offset--;
+                            } else {
+                                clearInterval(rectangleFinalMove);
+                                setTimeout(move, 5);
+                            }
+                        })
+                    }
+                }, 5)
+            }
+        })
+    }
+    
+}, 5);
